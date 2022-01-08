@@ -2,20 +2,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // your code here
   const newTaskForm = document.getElementById('create-task-form')
   newTaskForm.addEventListener('submit', createNewTask)
+  newTaskForm.request()
 })
 
 function createNewTask(e) {
-  e.preventDefault()
+  e.preventDefault(e)
 
   const newTaskDescription = document.getElementById('new-task-description')
   const newTask = document.createElement('li')
-  newTask.innerText = newTaskDescription.value
-
-  appendNewTask(newTask)
-  e.target.reset()
+  const btn = document.createElement('button')
+  btn.addEventListener('click', deleteTask)
+  btn.textContent = 'X'
+  newTask.textContent = `${newTaskDescription.value} `
+  newTask.appendChild(btn).style.position = 'inherit'
+  appendTask(newTask)
 }
 
-function appendNewTask(newTask) {
-  const toDoTask = document.getElementById('tasks')
-  toDoTask.append(newTask)
+function appendTask(newTask) {
+  document.getElementById('tasks').appendChild(newTask)
+}
+
+function deleteTask(e) {
+  e.target.parentNode.remove()
 }
