@@ -2,12 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // your code here
   const newTaskForm = document.getElementById('create-task-form')
   newTaskForm.addEventListener('submit', createNewTask)
-  newTaskForm.request()
 })
 
 function createNewTask(e) {
   e.preventDefault(e)
-
   const newTaskDescription = document.getElementById('new-task-description')
   const newTask = document.createElement('li')
   const btn = document.createElement('button')
@@ -16,6 +14,7 @@ function createNewTask(e) {
   newTask.textContent = `${newTaskDescription.value} `
   newTask.appendChild(btn).style.position = 'inherit'
   appendTask(newTask)
+  e.target.reset()
 }
 
 function appendTask(newTask) {
